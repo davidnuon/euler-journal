@@ -6,6 +6,7 @@ def palindrome(n):
 
 def main():
 	count = 0
+	table = {}
 	a = range(100, 1000)
 	b = range(100, 1000)
 
