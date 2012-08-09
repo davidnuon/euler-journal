@@ -5,7 +5,7 @@ def palindrome(n):
 	return s == s[::-1]
 
 def main():
-	table = {}
+	count = 0
 	a = range(100, 1000)
 	b = range(100, 1000)
 
@@ -17,12 +17,13 @@ def main():
 				continue
 			else:
 				key = str(sorted([j, k]))
-				
+
 				# If the key is stored, we need not compute it.
 				if key in table:
 					continue
 				else:
 					table[key] = j * k
+					count += 1
 
 	print max([table[n] for n in table if palindrome(table[n])])
 if __name__ == '__main__':
