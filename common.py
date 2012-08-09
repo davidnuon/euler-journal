@@ -24,6 +24,9 @@ def factors(n):
 def isprime(n):
 	prime = True
 
+	if n < 2 or n % 2 == 0:
+		return False
+	
 	for k in xrange(2, n - 1):
 		if n % k == 0:
 			prime = False
