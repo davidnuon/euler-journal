@@ -1,3 +1,6 @@
+import math
+
+
 def fib(n, l = {}):
 	if n in (0, 1):
 		return n
@@ -24,11 +27,14 @@ def factors(n):
 def isprime(n):
 	prime = True
 
-	if n < 2 or n % 2 == 0:
+	if n < 2:
 		return False
+
+	if n == 2:
+		return True
 	
-	for k in xrange(2, n - 1):
+	for k in xrange(2, int(math.sqrt(n)) + 1):
 		if n % k == 0:
-			prime = False
+			return False
 
 	return prime
