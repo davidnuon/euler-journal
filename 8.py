@@ -34,7 +34,10 @@ def main():
 			if key in table:
 				continue
 			else:
-				table[key] = reduce(lambda a,b: a*b, map(int, list(key)))
+				table[key] = reduce(lambda a,b: a*b, map(int, list(key.strip())))
 
 	allnumbers = [table[key] for key in table]
 	print max(allnumbers)
+
+if __name__ == '__main__':
+	main()
