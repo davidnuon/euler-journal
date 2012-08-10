@@ -1,5 +1,15 @@
 #!/usr/bin/env python
 
+def resolve(vector, table):
+	if 0 in vector:
+		return
+
+	key = str(sorted(vector))
+	if key in table:
+		return
+	
+	table[key] = reduce(lambda a, b: a*b, vector)
+
 def main():
 	grid = """08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
 			49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00
@@ -25,6 +35,35 @@ def main():
 	table = {}
 
 	grid = [map(int, n.strip().split(' ')) for n in grid.split('\n')]
+
+	for r in xrange(0, 20):
+		for c in xrange(0, 20):
+
+			# Down
+			if r + 3 > 19:
+				pass
+			else:
+				resolve([grid[r][c], grid[r+1][c], grid[r+2][c], grid[r+3][c]], table)
+			
+			# Right
+			if c + 3 > 19:
+				pass
+			else:
+				resolve([grid[r][c], grid[r][c+1], grid[r][c+2], grid[r][c+3]], table)
+
+			# Right Down Diagonal
+			if c + 3 > 19 or r + 3 > 19:
+				pass
+			else:
+				resolve([grid[r][c], grid[r+1][c+1], grid[r+2][c+2], grid[r+3][c+3]], table)
+
+			# Left Down Diagonal
+			if c - 3 < 0  or r + 3 > 19:
+				pass
+			else:
+				resolve([grid[r][c], grid[r+1][c-1], grid[r+2][c-2], grid[r+3][c-3]], table)
+
+	print max([table[key] for key in table])
 
 if __name__ == '__main__':
 	main()
