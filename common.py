@@ -1,6 +1,5 @@
 import math
 
-
 def fib(n, l = {}):
 	if n in (0, 1):
 		return n
@@ -24,9 +23,29 @@ def factors(n):
 
 	return outs
 
+def divisors(n):
+	outs = set([])
+	factors = []
+	s = []
+
+	for x in xrange(2, int(math.sqrt(n))):
+		if n % x == 0:
+			outs.add(n)
+			outs.add(x)
+
+	factors = list(outs)
+
+	for x in factors:
+		for y in factors:
+			key = x * y
+			if n % key == 0 and key < n:
+				outs.add(key)
+ 
+	outs.add(1)
+	return list(outs)
+
 def isprime(n):
 	prime = True
-
 	if n < 2:
 		return False
 
