@@ -1,21 +1,31 @@
 #!/usr/bin/env python
 
-# Naive implementation
+table = {}
 
 def collatz(n):
-	count = 1
-	while n != 1:
-		if n % 2 == 0:
-			n /= 2
+
+	if n == 0 or n == 1:
+		return 1
+
+	position = n
+	count = 0
+
+	while position != 1:
+		key = str(position)
+		if key in table:
+			table[str(n)] = count + table[key]
+			return table[str(n)]
 		else:
-			n = 3*n + 1
+			if position % 2 == 0:
+				position /= 2
+			else:
+				position = 3*position + 1
+			count += 1
 
-		count += 1
-
-	return count
+	table[str(n)] = count
+	return table[str(n)]
 
 def main():
-	position = 2
 	maxcollatz = {
 		"length" : 2,
 		"number" : 2
@@ -28,5 +38,6 @@ def main():
 
 	print maxcollatz
 
+
 if __name__ == '__main__':
-	main(), 
+	main()
